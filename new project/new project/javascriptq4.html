@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Javascript  Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Javascript Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+    question: "How can you merge two arrays in JavaScript?",
+    options: [
+      "arr1.merge(arr2)",
+      "arr1.concat(arr2)",
+      "arr1.push(arr2)",
+      "arr1.addAll(arr2)"
+    ],
+    answer: "arr1.concat(arr2)"
+  },
+  {
+    question: "What is the purpose of the `reduce()` method in JavaScript?",
+    options: [
+      "To filter elements in an array.",
+      "To transform elements in an array.",
+      "To accumulate values in an array to a single value.",
+      "To map elements in an array to new elements."
+    ],
+    answer: "To accumulate values in an array to a single value."
+  },
+  {
+    question: "Which of the following is not a loop structure in JavaScript?",
+    options: [
+      "for",
+      "while",
+      "foreach",
+      "do-while"
+    ],
+    answer: "foreach"
+  },
+  {
+    question: "What will be the output of the following code?\n```javascript\nfunction test() {\n  console.log(this);\n}\ntest();\n```",
+    options: [
+      "undefined",
+      "null",
+      "The global object (window in browsers)",
+      "The test function itself"
+    ],
+    answer: "The global object (window in browsers)"
+  },
+  {
+    question: "How do you create an immediately invoked function expression (IIFE) in JavaScript?",
+    options: [
+      "function() {}();",
+      "(function() {})();",
+      "function() {}();",
+      "(() => {})();"
+    ],
+    answer: "(function() {})();"
+  },
+  {
+    question: "What does the `typeof` operator do in JavaScript?",
+    options: [
+      "Determines the type of a variable.",
+      "Checks if a variable is defined.",
+      "Converts a variable to a different type.",
+      "Returns the prototype of an object."
+    ],
+    answer: "Determines the type of a variable."
+  },
+  {
+    question: "Which of the following is not a falsy value in JavaScript?",
+    options: [
+      "0",
+      "false",
+      "undefined",
+      "'false'"
+    ],
+    answer: "'false'"
+  },
+  {
+    question: "What will be the output of the following code?\n```javascript\nlet obj = { a: 1, b: 2 };\nfor (let key in obj) {\n  console.log(key);\n}\n```",
+    options: [
+      "1 2",
+      "a b",
+      "a 1 b 2",
+      "undefined"
+    ],
+    answer: "a b"
+  },
+  {
+    question: "What is the result of the following code?\n```javascript\n[1, 2, 3].map(num => {\n  if (typeof num === 'number') return;\n  return num * 2;\n});\n```",
+    options: [
+      "[undefined, undefined, undefined]",
+      "[null, null, null]",
+      "[1, 2, 3]",
+      "[2, 4, 6]"
+    ],
+    answer: "[undefined, undefined, undefined]"
+  },
+  {
+    question: "What does the `Promise` object represent in JavaScript?",
+    options: [
+      "A proxy for a value that may not be available yet.",
+      "A way to handle exceptions in asynchronous code.",
+      "A method to pause execution of a function.",
+      "A synchronous operation that returns a value immediately."
+    ],
+    answer: "A proxy for a value that may not be available yet."
+  },
+];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

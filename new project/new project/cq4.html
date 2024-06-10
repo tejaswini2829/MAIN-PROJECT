@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">C Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 10;\n    printf(\"%d\", x--);\n    return 0;\n}\n```",
+        "options": ["10", "9", "11", "0"],
+        "answer": "10"
+    },
+    {
+        "question": "Which of the following is not a valid variable name in C?",
+        "options": ["_variable", "123variable", "variable_123", "variable123"],
+        "answer": "123variable"
+    },
+    {
+        "question": "What is the result of the following expression?\n```c\nsizeof(int) + sizeof(float)\n```",
+        "options": ["8", "6", "10", "Depends on the system architecture"],
+        "answer": "8"
+    },
+    {
+        "question": "What is the purpose of the `calloc()` function in C?",
+        "options": ["Allocates memory dynamically and initializes it to zero.", "Allocates memory dynamically.", "Frees allocated memory.", "None of the above."],
+        "answer": "Allocates memory dynamically and initializes it to zero."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    int y = 2;\n    printf(\"%d\", x / y);\n    return 0;\n}\n```",
+        "options": ["2.5", "2", "3", "Depends on the system architecture"],
+        "answer": "2"
+    },
+    {
+        "question": "Which header file is used for mathematical functions in C?",
+        "options": ["<stdio.h>", "<math.h>", "<stdlib.h>", "<string.h>"],
+        "answer": "<math.h>"
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    printf(\"%d\", x += 3);\n    return 0;\n}\n```",
+        "options": ["5", "8", "3", "Depends on the system architecture"],
+        "answer": "8"
+    },
+    {
+        "question": "What does the `strstr()` function do in C?",
+        "options": ["Finds the length of a string.", "Finds the last occurrence of a character in a string.", "Searches for the first occurrence of a substring in a string.", "None of the above."],
+        "answer": "Searches for the first occurrence of a substring in a string."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int arr[5] = {1, 2, 3, 4, 5};\n    printf(\"%d\", arr[5]);\n    return 0;\n}\n```",
+        "options": ["5", "4", "Undefined behavior", "Depends on the system architecture"],
+        "answer": "Undefined behavior"
+    },
+    {
+        "question": "What does the `fwrite()` function do in C?",
+        "options": ["Writes data to a file.", "Reads data from a file.", "Writes data to the standard output stream.", "None of the above."],
+        "answer": "Writes data to a file."
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

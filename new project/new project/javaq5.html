@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center"> Java Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+      question: "Which method must be implemented by all threads?",
+      options: ["start()", "stop()", "run()"],
+      answer: "run()"
+    },
+    {
+      question: "What is the output of the following code? int a = 10; int b = 20; System.out.println(a++ + ++b);",
+      options: ["30", "31", "32"],
+      answer: "31"
+    },
+    {
+      question: "Which of the following is not a primitive data type in Java?",
+      options: ["int", "String", "boolean"],
+      answer: "String"
+    },
+    {
+      question: "How do you declare a constant in Java?",
+      options: ["const int MAX = 100;", "final int MAX = 100;", "static int MAX = 100;"],
+      answer: "final int MAX = 100;"
+    },
+    {
+      question: "What does the `break` statement do in a switch statement?",
+      options: ["Exits the switch statement.", "Exits the current case and continues to the next case.", "Causes a compilation error."],
+      answer: "Exits the switch statement."
+    },
+    {
+      question: "What is the default value of a local variable in Java?",
+      options: ["0", "null", "Undefined"],
+      answer: "Undefined"
+    },
+    {
+      question: "What is the purpose of the `toString()` method in Java?",
+      options: ["To convert an object to a string representation.", "To compare two strings.", "To calculate the hash code of a string."],
+      answer: "To convert an object to a string representation."
+    },
+    {
+      question: "Which of the following is a marker interface in Java?",
+      options: ["Serializable", "Comparable", "Cloneable"],
+      answer: "Serializable"
+    },
+    {
+      question: "What is the output of the following code? String s = \"Java\"; s.concat(\" Programming\"); System.out.println(s);",
+      options: ["Java", "Java Programming", "Programming"],
+      answer: "Java"
+    },
+    {
+      question: "What is method overloading in Java?",
+      options: ["Defining multiple methods with the same name but different parameters.", "Defining multiple methods with the same name and same parameters.", "Defining multiple methods with different names."],
+      answer: "Defining multiple methods with the same name but different parameters."
+    },
+    {
+      question: "Which of the following is true about the `String` class in Java?",
+      options: ["String is mutable.", "String is immutable.", "String is a primitive type."],
+      answer: "String is immutable."
+    },
+    {
+      question: "What is the use of the `super` keyword in Java?",
+      options: ["To call a method in the superclass.", "To create a new instance of the superclass.", "To access the private members of the superclass."],
+      answer: "To call a method in the superclass."
+    },
+    {
+      question: "Which of the following can be used to create an infinite loop in Java?",
+      options: ["for(int i = 0; i < 10; i++) {}", "while(true) {}", "do {} while(false);"],
+      answer: "while(true) {}"
+    },
+    {
+      question: "What is the default value of a boolean variable in Java?",
+      options: ["true", "false", "null"],
+      answer: "false"
+    },
+    {
+      question: "Which of the following is used to handle exceptions in Java?",
+      options: ["try-catch", "if-else", "for-each"],
+      answer: "try-catch"
+    },
+
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

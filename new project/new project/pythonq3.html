@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> python Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Python Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+        "question": "What is the output of the following code?\n```python\nx = [1, 2, 3]\nprint(x * 2)\n```",
+        "options": ["[1, 2, 3, 1, 2, 3]", "[2, 4, 6]", "[1, 1, 2, 2, 3, 3]", "[1, 2, 3, 2, 4, 6]"],
+        "answer": "[1, 2, 3, 1, 2, 3]"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\n10 / 2\n```",
+        "options": ["5.0", "5", "2.0", "2"],
+        "answer": "5.0"
+    },
+    {
+        "question": "What is the purpose of the `repr()` function in Python?",
+        "options": ["To evaluate an expression.", "To return a string representation of an object.", "To return the next item in an iterable.", "To repeat a string."],
+        "answer": "To return a string representation of an object."
+    },
+    {
+        "question": "What does the `max()` function do in Python?",
+        "options": ["Returns the maximum value from a list or an iterable.", "Returns the maximum key in a dictionary.", "Returns the maximum value in a dictionary.", "Returns the largest item in an iterable or the largest of two or more arguments."],
+        "answer": "Returns the largest item in an iterable or the largest of two or more arguments."
+    },
+    {
+        "question": "What is the output of the following code?\n```python\nx = 'hello'\nprint(x[-2:])\n```",
+        "options": ["hell", "lo", "he", "llo"],
+        "answer": "lo"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\nbool('False')\n```",
+        "options": ["True", "False", "None", "Error"],
+        "answer": "True"
+    },
+    {
+        "question": "What does the `min()` function do in Python?",
+        "options": ["Returns the minimum value from a list or an iterable.", "Returns the minimum key in a dictionary.", "Returns the minimum value in a dictionary.", "Returns the smallest item in an iterable or the smallest of two or more arguments."],
+        "answer": "Returns the smallest item in an iterable or the smallest of two or more arguments."
+    },
+    {
+        "question": "What is the purpose of the `map()` function in Python?",
+        "options": ["To apply a function to each item in an iterable and return a list of the results.", "To combine multiple iterables element-wise.", "To iterate over a dictionary's keys.", "To remove duplicates from a list."],
+        "answer": "To apply a function to each item in an iterable and return a list of the results."
+    },
+    {
+        "question": "What does the `ord()` function do in Python?",
+        "options": ["Returns the absolute value of a number.", "Returns the Unicode code point for a character.", "Returns the length of an object.", "Returns the next item in an iterable."],
+        "answer": "Returns the Unicode code point for a character."
+    },
+    {
+        "question": "What is the output of the following code?\n```python\nprint('Python'[2:])\n```",
+        "options": ["P", "t", "tho", "thon"],
+        "answer": "thon"
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

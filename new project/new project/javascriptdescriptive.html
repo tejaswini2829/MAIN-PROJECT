@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Language Webpage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            color: white;
+            height: 100vh; /* Full height */
+            overflow-y: auto; /* Add vertical scrollbar */
+            position: fixed; /* Fix the position */
+            width:250px;
+           
+        }
+        .sidebar .btn {
+            color: black;
+            text-align: left;
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0;
+            border: none;
+            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+            font-size: 16px;
+        }
+        .sidebar .btn:hover {
+            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+        }
+        .content {
+            padding: 20px;
+            margin-left: 260px;
+            
+        }
+        .content h2 {
+            margin-top: 20px;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+     
+        }
+        .navigation-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color:aquamarine;
+    
+        }
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: palevioletred;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        
+        <div class="col-md-3 sidebar">
+            <button class="btn" onclick="showContent('introduction')">Introduction</button>
+            <button class="btn" onclick="showContent('syntax')">Syntax</button>
+            <button class="btn" onclick="showContent('Comments')">Comments</button>
+            <button class="btn" onclick="showContent('Variables')">Variables</button>
+            <button class="btn" onclick="showContent('Operators')">Operators</button>
+            <button class="btn" onclick="showContent('Js Strings')">js  Strings</button>
+            <button class="btn" onclick="showContent('Js Math')">Js  Math</button>
+            <button class="btn" onclick="showContent('Js Booleans')">Js Booleans</button>
+            <button class="btn" onclick="showContent('Js if.....else')">Js if......else</button>
+            <button class="btn" onclick="showContent('Js Switch')">Js Switch</button>
+            <button class="btn" onclick="showContent('Js While Loop')">Js While Loop</button>
+            <button class="btn" onclick="showContent('Js For Loop')">Js For Loop</button>
+            <button class="btn" onclick="showContent('Js Arrays')"> Js Arrays</button>
+            <button class="btn" onclick="showContent('Break')">Break/Continue</button>
+            <button class="btn" onclick="showContent('Js classes')">Java Type conversion</button>
+            <button class="btn" onclick="showContent('Js Arrow Function')">Js scope</button>
+
+        </div>
+        <!-- Main Content -->
+        <div class="col-md-9 content">
+            <div class="navigation-buttons">
+                <button onclick="navigateContent(-1)">Back</button>
+                <button onclick="navigateContent(1)">Next</button>
+            </div>
+            <div id="introduction" class="content-section active">
+                <h2>Introduction to Java</h2>
+                <p> JavaScript Basics: JavaScript is a versatile, high-level, interpreted programming language primarily used for enhancing web pages by enabling interactive features.
+                    <br><br>Syntax and Variables: It uses a C-like syntax and supports variables defined using var, let, or const.
+                    <br><br>Data Types: JavaScript has dynamic typing, with basic data types including numbers, strings, booleans, objects, arrays, and null/undefined.
+                    <br><br>Functions: Functions are first-class objects, allowing them to be stored in variables, passed as arguments, and returned from other functions.
+                    <br><br>DOM Manipulation: JavaScript can manipulate the Document Object Model (DOM) to dynamically change HTML and CSS.
+                    <br><br>Events: It handles events such as clicks, form submissions, and page load to create interactive web experiences.
+                     </p>
+            </div>
+            <div id="syntax" class="content-section active">
+                <h2>Syntax</h2>
+                <p>Variables: Declared using var, let, or const to store data values. let and const are block-scoped, whereas var is function-scoped.
+                    <br><br>Data Types: JavaScript has dynamic typing and supports various data types including numbers, strings, booleans, objects, arrays, null, and undefined.
+                    <br><br> Operators: JavaScript uses arithmetic operators (+, -, *, /), assignment operators (=, +=, -=, etc.), comparison operators (==, ===, !=, !==, etc.), and logical operators (&&, ||, !).
+                    <br><br>Functions: Functions are reusable blocks of code defined using the function keyword or as arrow functions. They can take parameters and return values.
+                    <br><br>Conditional Statements: JavaScript uses if, else if, and else to execute code based on conditions. The switch statement is used for multiple potential values of a variable.
+                    <br><br>Loops: Iterative statements like for, while, and do...while loops are used to execute code repeatedly. for...of is used for iterable objects, and for...in is used for object properties.
+                    <br><br>Objects: Collections of key-value pairs. Properties can be accessed and manipulated using dot notation or bracket notation.
+                    <br><br>Arrays: Ordered collections of values, which can be accessed by their index. Arrays support various methods for adding, removing, and manipulating their elements.
+                    <br><br>Comments: Single-line comments start with //, and multi-line comments are enclosed in /* ... */.
+                    <br><br>ES6 Features: Modern JavaScript includes enhancements like template literals for string interpolation, destructuring assignment for unpacking values from arrays or objects, and module import/export for organizing code.
+                    </p><br>
+            </div>
+            <div id="Comments" class="content-section active">
+                <h2>Comments</h2>
+                <p>    Single-line comments: Indicated by //, everything following // on that line is considered a comment. Single-line comments are useful for brief notes or explanations.
+                    <br><br>Multi-line comments: Enclosed between /* and */, can span multiple lines. Multi-line comments are ideal for longer explanations, detailed notes, or temporarily disabling blocks of code.
+                    <br><br>Using comments effectively helps in understanding and maintaining code, facilitating better collaboration among developers.              </p>
+            </div>
+            <div id="Variables" class="content-section active">
+                <h2>Variables</h2>
+                <p>   In JavaScript, variables are containers for storing data values and are declared using var, let, or const.
+                <br><br>var: Function-scoped and can be redeclared; its usage is generally discouraged in modern JavaScript.
+                <br><br> let: Block-scoped, introduced in ES6, and prevents redeclaration within the same scope.
+                <br><br>const: Block-scoped and used for constants; once assigned, its value cannot be changed.
+                <br><br>Variables can store different data types, including numbers, strings, booleans, objects, and arrays.                      
+            </p>
+            </div>
+            <div id="Operators" class="content-section active">
+                <h2>Operators</h2>
+                <p>In JavaScript, operators are symbols used to perform operations on variables and values. They can be categorized into several types:
+                    <br><br>Arithmetic Operators: Perform basic mathematical operations.
+                    <br><br> Examples: + (addition), - (subtraction), * (multiplication), / (division), % (modulus).
+                    <br><br>Assignment Operators: Assign values to variables.
+                    <br><br>Examples: = (assign), += (add and assign), -= (subtract and assign), *= (multiply and assign), /= (divide and assign).
+                    <br><br>Comparison Operators: Compare two values and return a boolean.
+                    <br><br>Examples: == (equal to), === (strict equal to), != (not equal to), !== (strict not equal to), > (greater than), < (less than), >= (greater than or equal to), <= (less than or equal to).
+                    <br><br>Logical Operators: Perform logical operations and return a boolean.                   
+                     </p>
+            </div>
+            <div id="Js Math" class="content-section active">
+                <h2>Math</h2>
+                <p>In JavaScript, the Math object provides a collection of properties and methods for performing mathematical operations. Here are the key aspects of the Math object:
+                   <br><br>Constants: The Math object includes several mathematical constants.
+                    <br><br> Examples: Math.PI (π, approximately 3.14159), Math.E (Euler's number, approximately 2.718).
+                    <br><br>  Basic Methods: Methods for basic arithmetic operations and other common mathematical functions.
+                    <br><br>Examples:
+                    <br><br>Math.abs(-5); // Absolute value: 5
+                    <br><br>Math.round(4.7); // Rounds to the nearest integer: 5
+                    <br><br>Math.ceil(4.2); // Rounds up to the nearest integer: 5
+                    <br><br>Math.floor(4.7); // Rounds down to the nearest integer: 4
+                    <br><br>Math.max(1, 2, 3); // Returns the largest number: 3
+                    <br><br>Math.min(1, 2, 3); // Returns the smallest number: 1
+                    <br><br>Trigonometric Methods: Methods for trigonometric calculations.<br><br>
+                    Example:<br><br>
+                    Math.random(); // Example output: 0.123456789<br><br>
+                    These features make the Math object versatile for performing a wide range of mathematical computations in JavaScript.<br>
+                    <br><br>
+                </p>
+            </div>
+            <div id="Js Strings" class="content-section active">
+                <h2>Strings</h2>
+                <p>In JavaScript, strings are used to represent text and are a fundamental data type. Here are key points about strings:
+             <br><br> Declaration: Strings can be declared using single quotes ('), double quotes ("), or backticks (`) for template literals
+             <br><br>let str1 = 'Hello';
+             <br><br>let str2 = "World";
+             <br><br>let str3 = `Hello, ${str2}!`; // Template literal
+             <br><br>Concatenation: Strings can be concatenated using the + operator or template literals.
+             <br><br>Strings have various built-in methods for manipulation, such as toUpperCase(), toLowerCase(), substring(), indexOf(), split(), and replace().<br><br><br>
+             <br><br>  let upperStr = str1.toUpperCase(); // "HELLO"
+             <br><br> let subStr = str2.substring(0, 3); // "Wor"
+             <br><br>let index = str2.indexOf('o'); // 1
+             <br><br>let parts = str3.split(','); // ["Hello", " World!"]
+             <br><br>let newStr = str2.replace('World', 'JavaScript'); // "Hello, JavaScript!"
+             <br><br>These features make strings powerful and flexible for handling text in JavaScript. 
+                    </p>
+            </div>
+            <div id="Js Booleans" class="content-section active">
+                <h2>Booleans</h2>
+                <p>Booleans in JavaScript represent true or false values. They are used in logical and comparison operations, as well as conditional statements. Booleans can be assigned directly with true or false. Logical operators like && (AND) and || (OR) combine boolean values. Comparison operators like ==, ===, !=, !==, >, <, >=, and <= compare values and return a boolean. Booleans are crucial for controlling program flow with conditional statements like if, else if, and else. JavaScript also has truthy and falsy values, where certain values are considered true or false in a boolean context. Understanding booleans is essential for making decisions 
+                    </p>
+            </div>
+            <div id="Js if.....else" class="content-section active">
+                <h2>If Else</h2>
+                <p>In JavaScript, if statements are used for conditional execution of code. An if statement evaluates a condition and executes a block of code if the condition is true. Optionally, an else statement can be used to execute a different block of code if the condition is false. Multiple conditions can be tested using else if statements.
+                    <br><br>Example:
+                    <br><br> let num = 10;
+                    <br><br>if (num > 10) {
+                        <br><br>    console.log("Number is greater than 10.");
+                        <br><br>} else if (num === 10) {
+                            <br><br> console.log("Number is equal to 10.");
+                            <br><br>} else {
+                                <br><br>console.log("Number is less than 10.");
+                    }<br><br>
+                    <br><br>Understanding if and else statements is fundamental for creating dynamic and responsive JavaScript programs.
+                </p>
+            </div>
+            <div id="Js Switch" class="content-section active">
+                <h2>Switch</h2>
+                <p>The switch statement in JavaScript allows for conditional execution of code based on different cases. It begins with the keyword switch followed by an expression, and then contains case clauses with associated code blocks. An optional default case handles situations where none of the cases match the expression. Each case block typically ends with a break statement to prevent fall-through. Here's a brief overview:
+            br><br>Syntax:
+            <br><br>switch (expression) {
+                <br><br>    case value1:
+                <br><br>    // <br>Code to execute if expression equals value1
+                <br><br>    break;
+                <br><br>case value2:
+                <br><br>    // Code to execute if expression equals value2
+                <br><br>    break;
+                <br><br>default:
+                <br>  <br>  // Code to execute if no case matches expression
+                    }</p>
+            </div>
+            <div id="Js While Loop" class="content-section active">
+                <h2>While loop</h2>
+                <p> A while loop in JavaScript executes a block of code as long as a specified condition is true. Here's a concise overview in 10 lines:
+                  <br><br>Syntax:
+                  <br><br> while (condition) {
+                    <br><br>// Code block to execute while condition is true
+                    <br><br>}<br><br>
+                    Example:
+                    <br><br>let count = 0;
+                    <br><br>while (count < 5) {
+                        <br><br>console.log("Count is: " + count);
+                        <br><br>     count++;
+                    }
+                   </p>             
+            </div>
+            <div id="Js For Loop" class="content-section active">
+                <h2>For loop</h2>
+                <p> Syntax:<br><br>
+                    for (initialization; condition; increment/decrement) { 
+                        <br><br>// Code block to execute while condition is true 
+                        <br><br>}
+                    Example:<br><br>
+                    for (let i = 0; i < 5; i++) { 
+                        <br><br>console.log("Index is: " + i); 
+                        <br><br> }
+                        <br><br>In a for loop, the initialization statement is executed only once at the beginning. Then, the condition is evaluated. If true, the loop executes the code block, followed by the increment/decrement statement. This process repeats until the condition becomes false.</p>
+            </div>
+            <div id="Js Arrays" class="content-section active">
+                <h2>Arrays</h2>
+                <p>Arrays in JavaScript are ordered collections of values, which can hold any type of data, accessed by index. Here's a concise explanation in 2 lines:
+                    <br><br>Declaration:
+                    <br><br>let arrayName = []; // Empty array
+                    <br><br>let arrayName = [value1, value2, ...]; // Array with initial values
+                    <br><br>Example:<br>
+                    <br><br>let numbers = [1, 2, 3, 4, 5]; // Array of numbers
+                    <br><br>let fruits = ['apple', 'banana', 'orange']; // Array of strings
+                    <br><br>Arrays are versatile data structures in JavaScript, commonly used for storing and manipulating collections of data. </p>
+            </div>
+            <div id="Break" class="content-section active">
+                <h2>Break</h2>
+                <p> In JavaScript, the break statement is used to terminate the execution of a loop or switch statement. Here's a concise explanation in 2 lines
+                    <br><br>Purpose:
+                    <br><br>for (let i = 0; i < 10; i++) {
+                        <br><br>if (i === 5) {
+                            <br><br>break; // Exits the loop when i equals 5
+                            <br><br>}
+                            <br><br>console.log(i);
+                    }<br><br>
+        </p>
+            </div>
+            <div id="Js Arrow Function" class="content-section active">
+                <h2>Arrow Function</h2>
+                  <p>Arrow functions in JavaScript provide a concise syntax for writing function expressions. Here's a brief explanation in 2 lines:
+                    <br><br>Syntax:
+                    <br><br>Arrow function syntax: (parameters) => { statement } </p>
+            </div>
+            <div id="Js classes" class="content-section">
+                <h2>Java Classes and Objects</h2>
+                <p> In JavaScript, classes provide a way to define blueprints for creating objects with similar properties and methods. Here's a brief explanation in 2 lines:
+                    <br><br>Syntax: 
+                    <br><br> Class declaration: class ClassName { constructor() { ... } }
+                    <br><br>Example:
+                    <br><br>class Animal { constructor(name) { this.name = name; } } // Example class declaration
+                    <br><br>Classes simplify object-oriented programming in JavaScript by encapsulating data and behavior into reusable components.</p>
+            </div>
+        </div>
+    </div>     
+  </div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+            function showContent(sectionId) {
+        var sections = document.getElementsByClassName('content-section');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].classList.remove('active');
+        }
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    function navigateContent(direction) {
+        var sections = document.getElementsByClassName('content-section');
+        var currentSectionIndex = -1;
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].classList.contains('active')) {
+                currentSectionIndex = i;
+                break;
+            }
+        }
+        var nextSectionIndex = currentSectionIndex + direction;
+        if (nextSectionIndex >= 0 && nextSectionIndex < sections.length) {
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            sections[nextSectionIndex].classList.add('active');
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        showContent('introduction');
+    });
+
+
+
+</script>
+
+<button class="home-button" onclick="window.location.href='file:///C:/Users/TEJASWINI/OneDrive/Desktop/new%20project/new%20project/java.html'">Tutorial</button>
+
+</body>
+</html>

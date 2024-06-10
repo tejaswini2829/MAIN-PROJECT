@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">C Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    char str[] = \"Hello, World!\";\n    printf(\"%c\", str[13]);\n    return 0;\n}\n```",
+        "options": ["H", "!", "\\0", "Depends on the system architecture"],
+        "answer": "Undefined behavior"
+    },
+    {
+        "question": "Which of the following is a correct way to declare a function in C?",
+        "options": ["functionName(int a, int b) { }", "void functionName(int a, int b) { }", "functionName { }", "void functionName { }"],
+        "answer": "void functionName(int a, int b) { }"
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    printf(\"%d\", x += 3 * 2);\n    return 0;\n}\n```",
+        "options": ["5", "11", "13", "Depends on the system architecture"],
+        "answer": "11"
+    },
+    {
+        "question": "What is the purpose of the `feof()` function in C?",
+        "options": ["Checks if the end-of-file indicator for a file stream has been set.", "Reads a character from the standard input stream.", "Writes a character to the standard output stream.", "None of the above."],
+        "answer": "Checks if the end-of-file indicator for a file stream has been set."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    char str[10];\n    printf(\"%d\", sizeof(str));\n    return 0;\n}\n```",
+        "options": ["10", "11", "9", "Depends on the system architecture"],
+        "answer": "10"
+    },
+    {
+        "question": "What does the `strtok()` function do in C?",
+        "options": ["Tokenizes a string.", "Compares two strings.", "Searches for the first occurrence of a character in a string.", "None of the above."],
+        "answer": "Tokenizes a string."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    int y = 2;\n    printf(\"%d\", x /= y);\n    return 0;\n}\n```",
+        "options": ["2", "2.5", "5", "Depends on the system architecture"],
+        "answer": "2"
+    },
+    {
+        "question": "What does the `fclose()` function do in C?",
+        "options": ["Closes a file.", "Opens a file.", "Reads data from a file.", "None of the above."],
+        "answer": "Closes a file."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    printf(\"%d\", 5 & 3);\n    return 0;\n}\n```",
+        "options": ["5", "3", "1", "Depends on the system architecture"],
+        "answer": "1"
+    },
+    {
+        "question": "What is the purpose of the `fgets()` function in C?",
+        "options": ["Reads a string from the standard input stream.", "Writes a string to the standard output stream.", "Reads formatted input from the standard input stream.", "None of the above."],
+        "answer": "Reads a string from the standard input stream."
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

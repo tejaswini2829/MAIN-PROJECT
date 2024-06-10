@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Javascript Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+    question: "What is the difference between `let` and `var` in JavaScript?",
+    options: [
+      "let is block-scoped, while var is function-scoped.",
+      "let is function-scoped, while var is block-scoped.",
+      "Both let and var are block-scoped.",
+      "Both let and var are function-scoped."
+    ],
+    answer: "let is block-scoped, while var is function-scoped."
+  },
+  {
+    question: "What will be the output of the following code?\n```javascript\nlet a = 10;\nlet b = a;\nb = 20;\nconsole.log(a);\n```",
+    options: [
+      "10",
+      "20",
+      "undefined",
+      "null"
+    ],
+    answer: "10"
+  },
+  {
+    question: "Which method can be used to add one or more elements to the beginning of an array and returns the new length of the array?",
+    options: [
+      "push()",
+      "pop()",
+      "shift()",
+      "unshift()"
+    ],
+    answer: "unshift()"
+  },
+  {
+    question: "What will be the output of the following code?\n```javascript\nconst obj = {a: 1, b: 2};\nconst obj2 = obj;\nobj2.a = 3;\nconsole.log(obj.a);\n```",
+    options: [
+      "1",
+      "2",
+      "3",
+      "undefined"
+    ],
+    answer: "3"
+  },
+  {
+    question: "How do you remove a property from a JavaScript object?",
+    options: [
+      "delete obj.property;",
+      "remove obj.property;",
+      "obj.property = undefined;",
+      "obj.property = null;"
+    ],
+    answer: "delete obj.property;"
+  },
+  // Add more questions here...
+  {
+    question: "What will be the output of the following code?\n```javascript\nfor (let i = 0; i < 5; i++) {\n  setTimeout(() => console.log(i), 1000);\n}\n```",
+    options: [
+      "0 1 2 3 4",
+      "4 4 4 4 4",
+      "0 1 2 3",
+      "5 5 5 5 5"
+    ],
+    answer: "0 1 2 3 4"
+  },
+  {
+    question: "What is the result of the following expression?\n```javascript\n'5' + 3\n```",
+    options: [
+      "8",
+      "'53'",
+      "NaN",
+      "undefined"
+    ],
+    answer: "'53'"
+  },
+  {
+    question: "What will be the output of the following code?\n```javascript\nconst arr = [1, 2, 3];\narr[3] = 4;\nconsole.log(arr.length);\n```",
+    options: [
+      "3",
+      "4",
+      "2",
+      "5"
+    ],
+    answer: "4"
+  },
+  {
+    question: "What is the purpose of the `bind()` method in JavaScript?",
+    options: [
+      "To call a function with a given `this` value and arguments.",
+      "To create a new function with a given `this` value and arguments.",
+      "To immediately invoke a function with a given `this` value.",
+      "To set the scope of a variable."
+    ],
+    answer: "To create a new function with a given `this` value and arguments."
+  },
+  {
+    question: "Which of the following statements is true about the `const` keyword in JavaScript?",
+    options: [
+      "The value of a `const` variable can be changed.",
+      "The value of a `const` variable cannot be changed.",
+      "The `const` keyword defines a constant reference to a value.",
+      "The `const` keyword is block-scoped and mutable."
+    ],
+    answer: "The `const` keyword defines a constant reference to a value."
+  },
+];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

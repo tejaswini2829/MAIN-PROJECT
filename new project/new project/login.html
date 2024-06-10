@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+ <html>
+ <head> 
+<meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <title>Login form</title>
+<link href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\login-style.css" rel='stylesheet'>
+<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ <script>
+ function Validation(){ 
+            var uname=document.myform.username.value;
+             var pswrd=document.myform.password.value;
+             if(uname == null || uname == ""){
+                alert("Name can't be blank")
+               return false;
+             }
+            else if(pswrd.length<6){
+                     alert("password Must be 6 characters")
+                      return false;     
+           }                      
+            return true;
+            }
+                
+ </script> 
+</head> 
+<body>
+  
+  <nav>
+    <ul>
+<img class="nav-item1" src="C:\Users\TEJASWINI\OneDrive\Desktop\images\img9.jpg" width="50px" height="50px">
+<li><i class='bx bxs-user-detail'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\regrestation.html">Register</a></li>
+<li><i class='bx bxs-lock-open'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\login.html">login</a></li>
+<li><i class='bx bx-columns'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\courses.html">Courses</a></li>
+<li><i class='bx bx-hourglass' ></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\aboutus.html">AboutUs</a></li>
+<li><i class='bx bx-hive'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\services.html">Services</a></li>
+<li><i class='bx bxs-user'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\contactus.html">conctact</a></li>
+</ul>
+</nav>
+<div class="glass-effect">
+ <div class="wrapper">
+ <form name="myform" action="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\Loginsuccess.html" onsubmit="return Validation(this)"> 
+<h1>Login</h1> 
+<div class="input-box"> 
+<input type="text" name="username"placeholder="Username" required>
+ <i class='bx bxs-user'></i> 
+</div> 
+<div class="input-box"> <input type="password" name="password" placeholder="password" required > 
+    <i class='bx bx-lock-alt' ></i> </div> <div class="remeber-forget"> 
+    <label><input type="checkbox">Remember Me</label> 
+    <a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\forgotpassword.html">Forget password</a>
+     </div>
+     <button type="submit" class="btn">Login</button>
+     <div class="register-link"> <p>Dont have an account? <a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\regrestation.html">Register</a></p> 
+    </form>
+     </div>
+     </div> 
+    </body>
+     </html>
+    
+    
+    

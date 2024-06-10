@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java Language Webpage</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .sidebar {
+            color: white;
+            height: 100vh; /* Full height */
+            overflow-y: auto; /* Add vertical scrollbar */
+            position: fixed; /* Fix the position */
+            width:250px;
+        
+        }
+        .sidebar .btn {
+            color: black;
+            text-align: left;
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0;
+            border: none;
+            background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+            font-size: 16px;
+        }
+        .sidebar .btn:hover {
+            background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+        }
+        .content {
+            padding: 20px;
+            margin-left: 260px;
+            
+        }
+        .content h2 {
+            margin-top: 20px;
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+     
+        }
+        .navigation-buttons button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color:aquamarine;
+    
+        }
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: palevioletred;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        
+        <div class="col-md-3 sidebar">
+            <button class="btn" onclick="showContent('introduction')">Introduction</button>
+            <button class="btn" onclick="showContent('syntax')">Syntax</button>
+            <button class="btn" onclick="showContent('Comments')">Comments</button>
+            <button class="btn" onclick="showContent('Variables')">Variables</button>
+            <button class="btn" onclick="showContent('Operators')">Operators</button>
+            <button class="btn" onclick="showContent('java Strings')">java Strings</button>
+            <button class="btn" onclick="showContent('Java Math')">Java Math</button>
+            <button class="btn" onclick="showContent('Java Booleans')">Java Booleans</button>
+            <button class="btn" onclick="showContent('Java if.....else')">Java if......else</button>
+            <button class="btn" onclick="showContent('Java Switch')">Java Switch</button>
+            <button class="btn" onclick="showContent('Java While Loop')">Java While Loop</button>
+            <button class="btn" onclick="showContent('Java For Loop')">Java For Loop</button>
+            <button class="btn" onclick="showContent('Arrays')">Arrays</button>
+            <button class="btn" onclick="showContent('Break/Continue')">Break/Continue</button>
+            <button class="btn" onclick="showContent('Java Methods')">Java Methods</button>
+            <button class="btn" onclick="showContent('Java Method Parameter')">Java Method Parameter</button>
+            <button class="btn" onclick="showContent('Java Method Overloading')">Java Method Overloading</button>
+            <button class="btn" onclick="showContent('Java scope')">Java scope</button>
+            <button class="btn" onclick="showContent('Java Recursion')">Java Recursion</button>
+            <button class="btn" onclick="showContent('classes-objects')">Classes and Objects</button>
+        </div>
+        <!-- Main Content -->
+        <div class="col-md-9 content">
+            <div class="navigation-buttons">
+                <button onclick="navigateContent(-1)">Back</button>
+                <button onclick="navigateContent(1)">Next</button>
+            </div>
+            <div id="introduction" class="content-section active">
+                <h2>Introduction to Java</h2>
+                <p>What is Java?
+                    Java is a popular programming language, created in 1995.<br>
+                    It is owned by Oracle, and more than 3 billion devices run Java.<br>
+                    It is used for:<br>
+                    ⭕ Mobile applications (specially Android apps)<br>
+                    ⭕Desktop applications<br>
+                    ⭕Web applications<br>
+                    ⭕Web servers and application servers<br>
+                    ⭕Games<br>
+                    ⭕And much, much more!<br>
+                Why Use Java?<br>
+                    ⭕Java works on different platforms (Windows, Mac, Linux, Raspberry Pi, etc.)<br>
+                    ⭕It is one of the most popular programming languages in the world<br>
+                    ⭕It has a large demand in the current job market<br>
+                    ⭕It is easy to learn and simple to use<br>
+                    ⭕It is open-source and free<br>
+                    ⭕It is secure, fast and powerful<br>
+                    ⭕It has huge community support (tens of millions of developers)<br>
+                    Java is an object oriented language which gives a clear structure to programs and allows code to be reused, lowering development costs
+                    </p>
+            </div>
+            <div id="syntax" class="content-section active">
+                <h2>Syntax</h2>
+                <p>Class Declaration: Java programs are structured as classes which serve as blueprints for objects.<br><br>
+                    Main Method: The entry point of a Java application is the public static void main(String[] args) method.<br><br>
+                    Identifiers: Names for classes, variables, and methods, which must start with a letter, $, or _.,<br><br>
+                    Keywords: Reserved words like class, public, static, and void with predefined meanings.<br><br>
+                    Data Types: Includes primitive types (e.g., int, boolean) and non-primitive types (e.g., arrays, classes).<br><br>
+                    Operators: Include arithmetic, relational, logical, and assignment operators for various operations.<br><br>
+                    Control Statements: Direct program flow using if, else, switch, loops (for, while), and branching (break, continue).<br><br>
+                    Methods: Define behaviors with declarations that can accept parameters and return values.<br><br>
+                    Inheritance: Allows a class to inherit properties and methods from another class.<br><br>
+                    Exception Handling: Manages runtime errors using try, catch, and finally blocks, and the throw keyword.</p><br>
+            </div>
+            <div id="Comments" class="content-section active">
+                <h2>Comments</h2>
+                <p>Single-Line Comments: Use // to mark the beginning of a comment, which extends to the end of the line.<br><br>
+                    Multi-Line Comments: Enclosed between /* and */, spanning multiple lines.<br><br>
+                    Documentation Comments: Use /** and */ to create comments that can be processed by Javadoc to generate API documentation.<br><br>
+                    Purpose: Comments are used to explain code, making it easier to understand and maintain.<br><br>
+                    Single-Line Example: // This is a single-line comment.<br><br>
+                    Multi-Line Example: /* This is a multi-line comment that spans several lines */.<br><br>
+                    Documentation Example: /** This is a documentation comment for describing a class or method */.<br><br>
+                    Placement: Comments can be placed anywhere in the code, either on their own line or at the end of a line of code.<br><br>
+                    Ignored by Compiler: Comments are not executed by the compiler; they are purely for human readers.<br><br>
+                    Best Practices: Use comments to clarify complex logic, describe the purpose of variables, methods, and classes, and provide additional context where necessary.<br>       <br>              </p>
+            </div>
+            <div id="Variables" class="content-section active">
+                <h2>Variables</h2>
+                <p>Definition: Variables are containers used to store data in a Java program, identified by a unique name.<br><br>
+                    Declaration: In Java, variables must be declared with a specific data type before they can be used.<br><br>
+                    Data Types: Java supports primitive data types (e.g., int, double) and reference data types (e.g., String, arrays).<br><br>
+                    Syntax: Variable declaration follows the pattern: data_type variable_name;.<br><br>
+                    Initialization: Variables can be initialized at the time of declaration or later in the code.<br><br>
+                    Scope: Variables have a scope that defines where they can be accessed within the program.<br><br>
+                    Lifetime: Variables exist within their defined scope and are destroyed when the scope ends.<br><br>
+                    Naming Conventions: Variable names should be meaningful, following camelCase naming conventions.<br><br>
+                    Immutable and Mutable: Some data types, like primitives, are immutable (cannot be changed), while others, like objects, are mutable (can be modified).<br><br>
+                   <br><br>Usage: Variables are used to store and manipulate data, facilitating dynamic behavior and computation in Java programs. <br><br>
+            </p>
+            </div>
+            <div id="Operators" class="content-section active">
+                <h2>Operators</h2>
+                <p>Arithmetic Operators: Perform basic arithmetic operations such as addition (+), subtraction (-), multiplication (*), division (/), and modulus (%).
+                   <br><br> Relational Operators: Compare values and include operators like equal to (==), not equal to (!=), greater than (>), less than (<), greater than or equal to (>=), and less than or equal to (<=).
+                    <br><br>Logical Operators: Combine boolean expressions and include logical AND (&&), logical OR (||), and logical NOT (!).
+                    <br><br>Assignment Operators: Assign values to variables and include simple assignment (=) as well as compound assignment operators like +=, -=, *=, and /=.
+                    <br><br>Increment and Decrement Operators: Increase (++), or decrease (--), the value of a variable by 1.
+                    <br><br>Conditional Operator (Ternary Operator): A shorthand for if-else statements, in the form of condition ? expression1 : expression2.
+                    <br><Br>Bitwise Operators: Manipulate individual bits of integer operands and include bitwise AND (&), bitwise OR (|), bitwise XOR (^), left shift (<<), and right shift (>>).
+                    <br><br>Instanceof Operator: Checks whether an object is an instance of a particular class or interface.
+                    <br><br>Equality Operators: Test for equality (==) and inequality (!=) between two operands.
+                    <br><br>Precedence and Associativity: Operators have precedence and associativity rules that determine the order in which they are evaluated within expressions.
+                     </p>
+            </div>
+            <div id="java Strings" class="content-section active">
+                <h2>Strings</h2>
+                <p>Definition: In Java, strings are sequences of characters, represented by the String class.<br><br>
+                    Immutable: Strings are immutable, meaning their values cannot be changed once they are created.<br><br>
+                    Initialization: Strings can be initialized using double quotes (e.g., "Hello").<br><Br>
+                    Concatenation: Strings can be concatenated using the + operator (e.g., "Hello, " + "World").<br><br>
+                    Methods: The String class provides methods for various string operations like length(), substring(), indexOf(), etc.<br><br>
+                </p>
+            </div>
+            <div id="Java Math" class="content-section active">
+                <h2>Math</h2>
+                <p>java.lang.Math: Java provides the Math class in the java.lang package for mathematical operations.
+                    <br><br>Static Methods: Math contains static methods for common mathematical operations such as trigonometric, exponential, logarithmic functions, and rounding.
+                    <br><br>Constants: It defines constants like PI and E for mathematical calculations.
+                    <br><br>No Constructor: Math class cannot be instantiated as it has a private constructor, and all its methods are static.
+                    <br><br>Utility: Used extensively in Java programs for computations ranging from simple arithmetic to complex mathematical operations.
+                    </p>
+            </div>
+            <div id="Java Booleans" class="content-section active">
+                <h2>Booleans</h2>
+                <p>Definition: Booleans are a data type in Java representing true or false values.
+                   <br><br> Primitive Type: Booleans are a primitive data type in Java, denoted by the keyword boolean.
+                    <br><br>Binary Logic: Booleans are essential for binary logic operations and conditional statements in programming.
+                    <br><br>True and False: They can only have two possible values: true or false.
+                    <br><br>Used in Control Structures: Booleans are widely used in control structures such as if statements, loops, and logical operators for decision-making in programs.
+                    </p>
+            </div>
+            <div id="Java if.....else" class="content-section active">
+                <h2>If Else</h2>
+                <p>Conditional Statements: if and else are control flow statements used for decision-making in Java.<br><br>
+                    if Statement: Evaluates a boolean expression and executes a block of code if the condition is true.<br><Br>
+                    else Statement: Optionally follows an if statement and executes a block of code if the if condition is false.<br><br>
+                    <br><h4> if(condition) {
+                        <br>// code block to execute if condition is true
+                    <br>} <br>else {
+                        <br>// code block to execute if condition is false
+                    <br>}</h4>
+                    <br><br>Chaining: Multiple else-if blocks can be chained to handle multiple conditon
+                </p>
+            </div>
+            <div id="Java Switch" class="content-section active">
+                <h2>Switch</h2>
+                <p>Switch Statement: Provides an alternative way to handle multiple conditions in Java.<br><br>
+                    Syntax: Uses a selector expression to match a value against multiple cases and execute corresponding code blocks.
+            <br><br>Usage: Improves readability and maintainability for code with multiple conditional branches compared to nested if-else statements.</p>
+            </div>
+            <div id="Java While Loop" class="content-section active">
+                <h2>While loop</h2>
+                <p>While Loop: A control flow statement in Java used to repeatedly execute a block of code as long as a specified condition is true.
+                    <br><br>Syntax:<br><br>
+                    while (condition) {<br><br>
+                        // code block to execute while condition is true
+                    }<br><br>
+                    Execution: The condition is evaluated before each iteration. If it evaluates to true, the code block is executed; otherwise, the loop terminates.</p>
+            </div>
+            <div id="Java For Loop" class="content-section active">
+                <h2>For loop</h2>
+                <p>For Loop: A control flow statement in Java used for iterating over a range of values or elements in an array or collection.
+                    <br><br>Syntax:
+                    <br><br>   for (initialization; condition; update) {
+                        <br><br> // code block to execute for each iteration
+                    }<br><br>
+                    <br><br>Initialization: Executes once before the loop starts and initializes the loop control variable.
+                    <br><br>Condition: Checked before each iteration. If true, the loop continues; otherwise, it terminates.
+                    <br><br> Update: Executed after each iteration and typically updates the loop control variable.
+                    </p>
+            </div>
+            <div id="Arrays" class="content-section active">
+                <h2>Arrays</h2>
+                <p>Arrays: Arrays are data structures in Java used to store multiple values of the same data type under a single name.
+                    <br><br>Declaration: Arrays are declared using square brackets [], specifying the data type and the size of the array.
+                    <br><br>Initialization: Arrays can be initialized with values at the time of declaration or later using assignment statements.
+                    <br><br> Indexed Access: Elements of an array are accessed using index values starting from 0.
+                    <br><br>Fixed Size: Arrays have a fixed size once they are initialized, and the size cannot be changed during runtime.
+                    </p>
+            </div>
+            <div id="Break/Continue" class="content-section active">
+                <h2>Break/Continue</h2>
+                <p>Break Statement: Used in loops (e.g., for, while) and switch statements to terminate the loop or switch block prematurely.
+                    <br><br>Usage: When encountered, the break statement causes the immediate exit from the loop or switch block.
+                    <br><br>Example:
+                    <br><br>for (int i = 0; i < 10; i++) {
+                        <br><br>if (i == 5) {
+                            <br><br>break; // exits the loop when i equals 5
+                            <br><br>}<br><br>
+                        System.out.println(i);
+                    }<br><br>
+                    <br><br> Continue Statement: Used in loops to skip the rest of the current iteration and proceed to the next iteration.
+                    <br><br>Usage: When encountered, the continue statement jumps to the next iteration of the loop without executing the remaining code in the loop body.
+                    <br><br>Example:
+                    <br><br>for (int i = 0; i < 10; i++) {
+                        <br><br>if (i == 5) {
+                            <br><br>continue; // skips the rest of the iteration when i equals 5
+                            <br><br>}
+                            <br><br>System.out.println(i);
+                            <br><br> }
+                    
+        </p>
+            </div>
+            <div id="Java Methods" class="content-section active">
+                <h2>Methods</h2>
+                <p>Methods: In Java, methods are functions defined within classes to perform specific tasks.
+                    <br><br> Usage: Methods encapsulate reusable blocks of code, promoting modularity and code organization in Java programs.
+                    </p>
+            </div>
+            <div id="Java Method Parameter" class="content-section active">
+                <h2>Method parameter</h2>
+                <p>Method Parameters: Inputs provided to a method to customize its behavior or provide data for computation.
+                    <br><br>Usage: Parameters are declared within method parentheses and can be used inside the method body to perform operations or calculations.
+                </p>
+            </div>
+            <div id="Java Method Overloading" class="content-section active">
+                <h2>Method overloading</h2>
+                <p>Method Overloading: A feature in Java that allows a class to have multiple methods with the same name but different parameter lists.
+                    <br><br>Usage: Enables the creation of methods that perform similar tasks but operate on different types or numbers of parameters, enhancing code readability and flexibility.
+                    </p>
+            </div>
+            <div id="Java scope" class="content-section active">
+                <h2> Java scope</h2>
+                <p>Scope in Java: Refers to the visibility and lifetime of variables and methods within a program.
+                    <br><br>Local Scope: Variables declared inside a method or block are accessible only within that method or block.
+                    <br><br>Class Scope: Variables declared at the class level (outside any method) are accessible to all methods within the class.
+                    <br><br>Instance Scope: Instance variables belong to specific instances of a class and are accessible to all methods within that instance.
+                    <br><br>Static Scope: Static variables belong to the class itself and are shared among all instances of the class, accessible without creating an object.
+                    </p>
+            </div>
+            <div id="Java Recursion" class="content-section active">
+                <h2>Recusion</h2>
+                <p>Recursion: A programming technique where a function calls itself directly or indirectly to solve a problem.
+                    <br><br> Base Case: A condition in a recursive function that stops the recursive calls and provides a termination point.
+                    <br><br>Usage: Recursion is used to solve problems that can be broken down into smaller, similar subproblems.
+                    <br><br>Example: Computing factorial or Fibonacci series, traversing trees or graphs, and solving problems like Tower of Hanoi.
+                    <br><br>Caution: Infinite recursion can lead to stack overflow errors, so ensuring a base case is crucial for termination.
+                    </p>
+            </div>
+            <div id="classes-objects" class="content-section">
+                <h2>Java Classes and Objects</h2>
+                <p>Classes: Templates or blueprints for creating objects in Java, defining their properties and behaviors.
+                    <br><br>Objects: Instances of classes, representing real-world entities, with their own state and behavior.
+                    <br><br>Encapsulation: Classes encapsulate data (fields) and methods to manipulate that data, providing abstraction and modularity.
+                    <br><br>Instantiation: Objects are created from classes using the new keyword, allocating memory and initializing fields.
+                    <br><br>Usage: Classes and objects facilitate code organization, reuse, and maintenance in object-oriented programming paradigms.
+                </p>
+            </div>
+        </div>
+    </div>     
+  </div>
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+            function showContent(sectionId) {
+        var sections = document.getElementsByClassName('content-section');
+        for (var i = 0; i < sections.length; i++) {
+            sections[i].classList.remove('active');
+        }
+        document.getElementById(sectionId).classList.add('active');
+    }
+
+    function navigateContent(direction) {
+        var sections = document.getElementsByClassName('content-section');
+        var currentSectionIndex = -1;
+        for (var i = 0; i < sections.length; i++) {
+            if (sections[i].classList.contains('active')) {
+                currentSectionIndex = i;
+                break;
+            }
+        }
+        var nextSectionIndex = currentSectionIndex + direction;
+        if (nextSectionIndex >= 0 && nextSectionIndex < sections.length) {
+            for (var i = 0; i < sections.length; i++) {
+                sections[i].classList.remove('active');
+            }
+            sections[nextSectionIndex].classList.add('active');
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() {
+        showContent('introduction');
+    });
+
+
+
+</script>
+
+<button class="home-button" onclick="window.location.href='file:///C:/Users/TEJASWINI/OneDrive/Desktop/new%20project/new%20project/java.html'">tutorial</button>
+
+</body>
+</html>

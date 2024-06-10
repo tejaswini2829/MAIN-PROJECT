@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        #registration-form {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 5px;
+            border: 1px solid #f3f3f3;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .registration-form h2 {
+            margin-bottom: 20px;
+        }
+        .glass-effect{
+  background:rgba(93, 81, 81, 0.2);
+  border-radius:20px;
+  padding:10px;
+  width:250px;
+  text-align:center;
+  backdrop-filter:blur(10px);
+-webkit-backdrop-filter:blur(10px);
+border:1px solid rgba(71, 67, 67, 0.036);
+justify-content: center;
+box-shadow:0 4px 8px rgba(0,0,0,0.2);
+position: bottom right;
+}
+nav{
+    background:#fff;
+    border-radius: 30px;
+    padding:5px;
+    box-shadow:0 10px 20px -20px rgba(0,0,0,0.4);
+    position:relative;
+    width:100%;
+    height:70px;
+    background-color:aqua;
+    border:0cap;
+    left:0;
+    top:0;
+    margin-top:0;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    text-align: center; 
+    color:black; 
+}
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    padding:13px 20px;
+    margin:10px;
+    font-size: 18px;
+    font-weight: 500;
+    color:black;
+    cursor:pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 0.5s;
+
+}
+nav ul li::after{
+    content: "";
+    background: palevioletred;
+    width:100%;
+    height:100%;
+    border-radius:30px;
+    position:absolute;
+    top:20%;
+    left:0%;
+    transform:translate(-150% -150%);
+    z-index:-1;
+    opacity: 0;
+    transition:top 0.5s;
+    opacity:0.5s;
+}
+nav ul li:hover{
+    color:rgb(165, 173, 179);
+
+}
+nav ul li:hover::after{
+top:10%;
+opacity:1;
+}
+#video-background{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%,-50%);
+    z-index:-1;
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1025px) {
+    body {
+        font-size: 18px;
+    }
+}
+
+@media (orientation: landscape) {
+    body {
+        font-size: 1em;
+    }
+}
+    </style>
+</head>
+<body>
+    <button class="btn">
+        <a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\courses.html">Home</a>  
+    </button>
+
+    <nav>
+        <ul>
+    <img class="nav-item1" src="C:\Users\TEJASWINI\OneDrive\Desktop\images\img9.jpg" width="50px" height="50px">
+    <li><i class='bx bxs-user-detail'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\regrestation.html">Register</a></li>
+    <li><i class='bx bxs-lock-open'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\login.html">login</a></li>
+    <li><i class='bx bx-columns'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\courses.html">Courses</a></li>
+    <li><i class='bx bx-hourglass' ></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\aboutus.html">AboutUs</a></li>
+    <li><i class='bx bx-hive'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\services.html">Services</a></li>
+    <li><i class='bx bxs-user'></i><a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\contactus.html">conctact</a></li>
+    </ul>
+    </nav>
+    <div class="container">
+        <div id="registration-form">
+            <div class="glow-effect">
+            <h2>Register</h2>
+            <form>
+                
+                             <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group">
+                    <label for="coding-language">Preferred Coding Language</label>
+                    <select class="form-control" id="coding-language">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="c++">C++</option>
+                        <option value="csharp">C#</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Register</button>
+            </form>
+        </div>
+    </div>
+    </div>
+    <video id="video-background" autoplay setTime="10000"loop muted>
+      <source src="C:\Users\TEJASWINI\Downloads\Blue Animated Background.mp4" type="video/mp4"
+  </video>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('registration-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the default form submission
+            window.location.href = 'file:///C:/Users/TEJASWINI/OneDrive/Desktop/new%20project/new%20project/login.html';  // Redirect to the login page
+        });
+    </script>
+</body>
+</html>

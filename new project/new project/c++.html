@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Gradient Buttons and Border</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: #f0f0f0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+    padding:20px;
+    background-color:grey;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+    left:100px;
+    height: 200px;
+    border: 7px solid transparent;
+    border-radius: 20px;
+    position: relative;
+    animation: borderAnimation 9s infinite;
+    box-shadow:0 0 10px aqua;
+    transition: background-color  0.3s ease,transform 0.3s ease;
+    background:rgba(22, 129, 95, 0);
+      border-radius:10px;
+      padding:10px;
+      width:400px;
+      text-align:center;
+      backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  justify-content: center;
+  border:1px solid rbba(255,255,255,0.18);
+  content:black;
+  
+  position: bottom right;
+}
+
+@keyframes borderAnimation {
+    0% {
+        border-image: linear-gradient(45deg,  #ff6b6b, aqua);
+    }
+    25% {
+        border-image: linear-gradient(45deg, aqua,  #43e97b) 1;
+    }
+    50% {
+        border-image: linear-gradient(45deg,  #43e97b, blue) 1;
+    }
+    75% {
+        border-image: linear-gradient(45deg, blue, #ff6b6b) 1;
+    }
+    100% {
+        border-image: linear-gradient(45deg,  #ff6b6b, yellow) 1;
+    }
+}
+
+.gradient-button {
+    padding: 15px 30px;
+    border-radius: 20px;
+    font-size: 14px;  
+    font-weight: bold;
+    color: black;
+    border: none;
+    border-radius: 25px;
+     cursor: pointer;
+     background-size: 200% auto;
+     transition: background-position 0.4s, transform 0.2s;
+    box-shadow:(0,0,0,0.1);
+    transition: background-color  0.3s ease,transform 0.3s ease;
+}
+
+.gradient-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #ff6b6b, #4facfe, #43e97b,aqua);
+    z-index: -1;
+    transition: transform 0.5s ease;
+    transform: scale(0);
+}
+
+.gradient-button:hover::before {
+    transform: scale(1);
+}
+
+.gradient-button:hover {
+    background: transparent;
+    transform: scale(1.0);
+}
+.btn1 {
+            background-image: linear-gradient(45deg, #ff6b6b, #f06595);
+        }
+
+.btn2 {
+            background-image: linear-gradient(45deg, #4facfe, #00f2fe);
+        }
+
+ .btn3 {
+            background-image: linear-gradient(45deg, #43e97b, #38f9d7);
+        }
+
+ .btn4 {
+            background-image: linear-gradient(45deg, #fa709a,  #ff6b6b);
+        }
+  #video-background{
+    position: absolute;
+    top: 50%;
+    left:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%,-50%);
+    z-index:-1;
+}
+.btn{
+    left:100px;
+    top:50px;
+    position: fixed;
+    align-items: top;
+    padding:10px  10px;
+    border-radius:10px;
+    size:0cqmax;
+    background-image: linear-gradient(45deg, #fa709a,  #38f9d7);
+
+}
+
+.btn:hover{
+    transform: scale(2.0);
+}
+.glow{
+  font-size:36px;
+  color:#fa709a;
+  text-shadow: 0 0 10px blue, 0 0 20px palevioletred,0 0 30px aqua;
+  left:700px;
+  top:150px;
+  position:fixed;
+  align-items:top;
+
+}
+
+    </style>
+</head>
+<body>
+    <button class="btn">
+        <a href="C:\Users\TEJASWINI\OneDrive\Desktop\new project\new project\courses.html">Home</a>  
+    </button>
+    <h1 class="glow">C++ Turtorial</h1>
+    <div class="container">
+        <button class="gradient-button btn1" onclick="window.location.href='file:///C:/Users/TEJASWINI/OneDrive/Desktop/new%20project/new%20project/c++descriptive.html';">Descriptive</button>
+        <button class="gradient-button btn2" onclick="window.location.href='https://youtube.com/playlist?list=PLdo5W4Nhv31bZSiqiOL5ta39vSnBxpOPT&feature=shared';">Videos</button>
+        <button class="gradient-button btn3" onclick="window.location.href='https://www.programiz.com/cpp-programming/online-compiler/';">Online Complier</button>
+        <button class="gradient-button btn4" onclick="window.location.href='file:///C:/Users/TEJASWINI/OneDrive/Desktop/new%20project/new%20project/c++quizz.html';">Quizz</button>
+    </div>
+    <video id="video-background" autoplay setTime="10000"loop muted>
+        <source src="C:\Users\TEJASWINI\Downloads\Vectorize(Prototype) 002.mp4" type="video/mp4"
+    </video>
+</body>
+</html>

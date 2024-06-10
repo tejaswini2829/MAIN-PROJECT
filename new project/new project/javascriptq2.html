@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Javascript Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+      question: "Which of the following is not a JavaScript data type?",
+      options: ["Undefined", "Number", "Boolean", "Float"],
+      answer: "Float"
+    },
+    {
+      question: "What does the `map()` method do in JavaScript?",
+      options: ["Iterates over each element of an array.", "Returns a new array with the results of calling a provided function on every element.", "Filters elements of an array.", "Reduces an array to a single value."],
+      answer: "Returns a new array with the results of calling a provided function on every element."
+    },
+    {
+      question: "Which of the following is used to handle exceptions in JavaScript?",
+      options: ["try-catch", "if-else", "for-loop", "while-loop"],
+      answer: "try-catch"
+    },
+    {
+      question: "What will be the output of the following code? console.log(typeof NaN);",
+      options: ["number", "NaN", "undefined", "object"],
+      answer: "number"
+    },
+    {
+      question: "Which of the following methods can be used to create a new object in JavaScript?",
+      options: ["Object.create()", "Object.new()", "Object.constructor()", "Object.prototype()"],
+      answer: "Object.create()"
+    },
+    {
+      question: "What is the purpose of the `event.preventDefault()` method in JavaScript?",
+      options: ["To stop the event from bubbling up the DOM tree.", "To prevent the default action of the event from occurring.", "To stop the event from being dispatched.", "To remove the event listener from an element."],
+      answer: "To prevent the default action of the event from occurring."
+    },
+    {
+      question: "What is the correct syntax to create a class in JavaScript?",
+      options: ["class MyClass { constructor() {} }", "class: MyClass { constructor() {} }", "class = MyClass { constructor() {} }", "class MyClass() { constructor() {} }"],
+      answer: "class MyClass { constructor() {} }"
+    },
+    {
+      question: "How do you add a new element to the end of an array in JavaScript?",
+      options: ["arr.push(element)", "arr.pop(element)", "arr.shift(element)", "arr.unshift(element)"],
+      answer: "arr.push(element)"
+    },
+    {
+      question: "What is the difference between `==` and `===` in JavaScript?",
+      options: ["== checks for value equality, while === checks for both value and type equality.", "== checks for type equality, while === checks for value equality.", "== and === are equivalent.", "== checks for value equality, while === performs type conversion."],
+      answer: "== checks for value equality, while === checks for both value and type equality."
+    },
+    {
+      question: "Which of the following statements is true about JavaScript hoisting?",
+      options: ["Variable and function declarations are moved to the top of their scope before code execution.", "Only variable declarations are hoisted.", "Only function declarations are hoisted.", "Hoisting doesn't occur in JavaScript."],
+      answer: "Variable and function declarations are moved to the top of their scope before code execution."
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

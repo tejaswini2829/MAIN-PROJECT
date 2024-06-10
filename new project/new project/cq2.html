@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">C Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    int y = 10;\n    printf(\"%d\", x++ * y--);\n    return 0;\n}\n```",
+        "options": ["40", "50", "55", "60"],
+        "answer": "50"
+    },
+    {
+        "question": "What is the correct way to define a constant in C?",
+        "options": ["const x = 10;", "define x 10", "#define x 10", "const int x = 10;"],
+        "answer": "#define x 10"
+    },
+    {
+        "question": "What is the result of the following expression?\n```c\n10 / 4\n```",
+        "options": ["2.5", "2", "2.0", "Depends on the system architecture"],
+        "answer": "2"
+    },
+    {
+        "question": "What is the purpose of the `malloc()` function in C?",
+        "options": ["Allocates memory dynamically.", "Frees allocated memory.", "Resizes allocated memory.", "None of the above."],
+        "answer": "Allocates memory dynamically."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    printf(\"%d\", x << 1);\n    return 0;\n}\n```",
+        "options": ["5", "10", "20", "0"],
+        "answer": "10"
+    },
+    {
+        "question": "Which operator is used for taking the address of a variable in C?",
+        "options": ["*", "&", "-", "+"],
+        "answer": "&"
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    int x = 5;\n    printf(\"%d\", ++x);\n    return 0;\n}\n```",
+        "options": ["5", "6", "10", "Depends on the system architecture"],
+        "answer": "6"
+    },
+    {
+        "question": "What does the `strcpy()` function do in C?",
+        "options": ["Copies a string to another string.", "Compares two strings.", "Concatenates two strings.", "None of the above."],
+        "answer": "Copies a string to another string."
+    },
+    {
+        "question": "What is the output of the following code?\n```c\n#include <stdio.h>\nint main() {\n    printf(\"%d\", sizeof(char));\n    return 0;\n}\n```",
+        "options": ["1", "2", "4", "Depends on the system architecture"],
+        "answer": "1"
+    },
+    {
+        "question": "What does the `scanf()` function return in C?",
+        "options": ["The number of characters read.", "The number of characters written.", "The number of successful assignments.", "None of the above."],
+        "answer": "The number of successful assignments."
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

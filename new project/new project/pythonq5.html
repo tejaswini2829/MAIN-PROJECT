@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> python Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Python Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+        "question": "What is the output of the following code?\n```python\nx = [1, 2, 3]\ny = x\ny.append(4)\nprint(x)\n```",
+        "options": ["[1, 2, 3]", "[1, 2, 3, 4]", "[1, 2, 3, 4, 4]", "[1, 2, 3, 3]"],
+        "answer": "[1, 2, 3, 4]"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\n'Python' + 3\n```",
+        "options": ["'Python3'", "SyntaxError", "'PythonPythonPython'", "TypeError"],
+        "answer": "TypeError"
+    },
+    {
+        "question": "What is the purpose of the `round()` function in Python?",
+        "options": ["Rounds a floating-point number to the nearest integer.", "Returns the next item in an iterable.", "Converts a number to a string.", "None of the above."],
+        "answer": "Rounds a floating-point number to the nearest integer."
+    },
+    {
+        "question": "What is the output of the following code?\n```python\nx = [1, 2, 3]\nprint(x[::-1])\n```",
+        "options": ["[1, 2, 3]", "[3, 2, 1]", "[3, 1]", "[2, 3, 1]"],
+        "answer": "[3, 2, 1]"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\nTrue + True\n```",
+        "options": ["2", "True", "False", "TypeError"],
+        "answer": "2"
+    },
+    {
+        "question": "What is the purpose of the `any()` function in Python?",
+        "options": ["Returns True if any element of an iterable is true.", "Returns True if all elements of an iterable are true.", "Returns False if any element of an iterable is false.", "None of the above."],
+        "answer": "Returns True if any element of an iterable is true."
+    },
+    {
+        "question": "What is the output of the following code?\n```python\nx = [1, 2, 3]\nprint(x[:-2])\n```",
+        "options": ["[1]", "[1, 2]", "[2, 3]", "SyntaxError"],
+        "answer": "[1]"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\n'Python' * 3\n```",
+        "options": ["'PythonPythonPython'", "SyntaxError", "'PPPPPP'", "TypeError"],
+        "answer": "'PythonPythonPython'"
+    },
+    {
+        "question": "What is the purpose of the `sorted()` function in Python?",
+        "options": ["Returns a sorted list of the specified iterable.", "Sorts the items of a list in place.", "Returns a sorted list of the specified iterable in reverse order.", "None of the above."],
+        "answer": "Returns a sorted list of the specified iterable."
+    },
+    {
+        "question": "What is the output of the following code?\n```python\nx = 'hello'\nprint(x[2::-1])\n```",
+        "options": ["he", "lo", "eh", "oll"],
+        "answer": "eh"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\nint('10')\n```",
+        "options": ["'10'", "10.0", "10", "Error"],
+        "answer": "10"
+    },
+    {
+        "question": "What is the purpose of the `abs()` function in Python?",
+        "options": ["Returns the absolute value of a number.", "Returns the sum of all elements in an iterable.", "Returns the index of the first occurrence of a substring.", "None of the above."],
+        "answer": "Returns the absolute value of a number."
+    },
+    {
+        "question": "What is the output of the following code?\n```python\nx = {'a': 1, 'b': 2}\nx['c'] = 3\nprint(len(x))\n```",
+        "options": ["2", "3", "4", "TypeError"],
+        "answer": "3"
+    },
+    {
+        "question": "What is the result of the following expression?\n```python\n[1, 2, 3] + [4, 5, 6]\n```",
+        "options": ["[1, 2, 3, 4, 5, 6]", "[1, 2, 3, 1, 2, 3]", "[1, 2, 3, [4, 5, 6]]", "[5, 7, 9]"],
+        "answer": "[1, 2, 3, 4, 5, 6]"
+    },
+    {
+        "question": "What is the purpose of the `sum()` function in Python?",
+        "options": ["Returns the sum of all elements in an iterable.", "Returns the number of items in an iterable.", "Returns the index of the first occurrence of a substring.", "None of the above."],
+        "answer": "Returns the sum of all elements in an iterable."
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

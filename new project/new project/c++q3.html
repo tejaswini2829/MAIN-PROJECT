@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">C Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+        "question": "What is the output of the following code?\n```cpp\n#include <iostream>\nint main() {\n    int x = 5;\n    int y = 2;\n    std::cout << x / y;\n    return 0;\n}\n```",
+        "options": ["2.5", "2", "2.0", "Depends on the system architecture"],
+        "answer": "2"
+    },
+    {
+        "question": "What is the purpose of the `delete` operator in C++?",
+        "options": ["Deallocates memory dynamically.", "Allocates memory dynamically.", "Resizes allocated memory.", "None of the above."],
+        "answer": "Deallocates memory dynamically."
+    },
+    {
+        "question": "What is the output of the following code?\n```cpp\n#include <iostream>\nint main() {\n    int x = 5;\n    std::cout << (5 % 2);\n    return 0;\n}\n```",
+        "options": ["2.5", "2", "3", "0"],
+        "answer": "1"
+    },
+    {
+        "question": "What is the purpose of the `typeid` operator in C++?",
+        "options": ["Returns the size of an object.", "Returns the type of an object.", "Returns the memory address of an object.", "None of the above."],
+        "answer": "Returns the type of an object."
+    },
+    {
+        "question": "What is the output of the following code?\n```cpp\n#include <iostream>\nint main() {\n    int arr[] = {1, 2, 3};\n    std::cout << arr[3];\n    return 0;\n}\n```",
+        "options": ["1", "2", "3", "Depends on the system architecture"],
+        "answer": "Undefined behavior"
+    },
+    {
+        "question": "What does the `std::getline()` function do in C++?",
+        "options": ["Reads a string from the standard input stream.", "Writes a string to the standard output stream.", "Reads formatted input from the standard input stream.", "None of the above."],
+        "answer": "Reads a string from the standard input stream."
+    },
+    {
+        "question": "What is the output of the following code?\n```cpp\n#include <iostream>\nint main() {\n    int x = 5;\n    std::cout << (x += 3);\n    return 0;\n}\n```",
+        "options": ["5", "8", "3", "Depends on the system architecture"],
+        "answer": "8"
+    },
+    {
+        "question": "What does the `std::string::find()` function do in C++?",
+        "options": ["Finds the length of a string.", "Finds the last occurrence of a character in a string.", "Searches for the first occurrence of a substring in a string.", "None of the above."],
+        "answer": "Searches for the first occurrence of a substring in a string."
+    },
+    {
+        "question": "What is the output of the following code?\n```cpp\n#include <iostream>\nint main() {\n    std::cout << sizeof(int) * sizeof(double);\n    return 0;\n}\n```",
+        "options": ["8", "4", "6", "Depends on the system architecture"],
+        "answer": "8"
+    },
+    {
+        "question": "What does the `std::ofstream` class do in C++?",
+        "options": ["Reads data from a file.", "Writes data to a file.", "Opens a file for reading and writing.", "None of the above."],
+        "answer": "Writes data to a file."
+    }
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

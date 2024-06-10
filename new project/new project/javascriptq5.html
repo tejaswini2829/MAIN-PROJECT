@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Javascript Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+    question: "What will be the output of the following code?\n```javascript\nlet x = 1;\nlet y = x++;\nconsole.log(x, y);\n```",
+    options: [
+      "1 1",
+      "2 1",
+      "1 2",
+      "2 2"
+    ],
+    answer: "2 1"
+  },
+  {
+    question: "How do you check if a variable is an array in JavaScript?",
+    options: [
+      "Array.isArray(variable)",
+      "variable instanceof Array",
+      "typeof variable === 'array'",
+      "Both Array.isArray(variable) and variable instanceof Array"
+    ],
+    answer: "Array.isArray(variable)"
+  },
+  {
+    question: "Which method is used to combine all elements of an array into a string?",
+    options: [
+      "join()",
+      "concat()",
+      "toString()",
+      "reduce()"
+    ],
+    answer: "join()"
+  },
+  {
+    question: "Which of the following is not a valid method to merge two arrays in JavaScript?",
+    options: [
+      "concat()",
+      "push()",
+      "spread operator (...)",
+      "slice()"
+    ],
+    answer: "push()"
+  },
+  {
+    question: "What is the purpose of the `toLocaleString()` method in JavaScript?",
+    options: [
+      "Converts a date to a string, using the locale settings.",
+      "Converts a number to a localized string representation.",
+      "Converts a string to a localized version.",
+      "Converts an array to a string, using the locale settings."
+    ],
+    answer: "Converts a date to a string, using the locale settings."
+  },
+  {
+    question: "What will be the output of the following code?\n```javascript\nfunction foo() {\n  var a = b = 5;\n}\nfoo();\nconsole.log(b);\n```",
+    options: [
+      "5",
+      "undefined",
+      "ReferenceError: b is not defined",
+      "TypeError: Assignment to constant variable"
+    ],
+    answer: "5"
+  },
+  {
+    question: "Which of the following is not a valid JavaScript data type?",
+    options: [
+      "String",
+      "Number",
+      "Character",
+      "Object"
+    ],
+    answer: "Character"
+  },
+  {
+    question: "What does the `Array.splice()` method do in JavaScript?",
+    options: [
+      "Adds new elements to an array.",
+      "Removes elements from an array and returns the removed elements.",
+      "Joins two or more arrays.",
+      "Sorts the elements of an array."
+    ],
+    answer: "Removes elements from an array and returns the removed elements."
+  },
+  {
+    question: "What is the result of the following code?\n```javascript\nconsole.log(typeof NaN);\n```",
+    options: [
+      "number",
+      "NaN",
+      "undefined",
+      "object"
+    ],
+    answer: "number"
+  },
+  {
+    question: "Which JavaScript method is used to remove the last element from an array and return that element?",
+    options: [
+      "pop()",
+      "shift()",
+      "splice()",
+      "unshift()"
+    ],
+    answer: "pop()"
+  }
+];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>

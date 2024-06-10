@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Java Coding Quiz</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .correct {
+      background-color:lightgreen;
+    }
+    .incorrect {
+      background-color: #c86971;
+    }
+    body{
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4 text-center">Java Coding Quiz</h1>
+    <div id="quiz">
+      <!-- Questions will be inserted here -->
+    </div>
+    <div class="text-center mt-4">
+      <button id="submitBtn" class="btn btn-primary">Submit Quiz</button>
+      <h3 class="mt-4">Your Score: <span id="score">0</span></h3>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    const questions = [
+    {
+      question: "What is the size of an `int` in Java?",
+      options: ["2 bytes", "4 bytes", "8 bytes"],
+      answer: "4 bytes"
+    },
+    {
+      question: "Which of the following is not a valid Java keyword?",
+      options: ["public", "static", "void", "unsigned"],
+      answer: "unsigned"
+    },
+    {
+      question: "What is the output of the following code? int x = 5; int y = 10; System.out.println(x + y);",
+      options: ["15", "510", "Compilation error"],
+      answer: "15"
+    },
+    {
+      question: "Which of the following is the correct syntax for creating an array of integers in Java?",
+      options: ["int[] arr = new int[5];", "int arr = new int[5];", "int arr[] = int[5];"],
+      answer: "int[] arr = new int[5];"
+    },
+    {
+      question: "Which of the following statements is true about inheritance in Java?",
+      options: ["A subclass can inherit from multiple superclasses.", "A subclass can override methods from the superclass.", "A subclass cannot override methods from the superclass."],
+      answer: "A subclass can override methods from the superclass."
+    },
+    {
+      question: "What is the return type of the `hashCode()` method in Java?",
+      options: ["int", "long", "Object"],
+      answer: "int"
+    },
+    {
+      question: "How do you create an instance of an abstract class in Java?",
+      options: ["Using the `new` keyword.", "By subclassing it and creating an instance of the subclass.", "Using a factory method."],
+      answer: "By subclassing it and creating an instance of the subclass."
+    },
+    {
+      question: "Which package contains the `Scanner` class in Java?",
+      options: ["java.io", "java.util", "java.lang"],
+      answer: "java.util"
+    },
+    {
+      question: "What will be the output of the following code? String str = \"Hello\"; str = str.concat(\" World\"); System.out.println(str);",
+      options: ["Hello", "Hello World", "World"],
+      answer: "Hello World"
+    },
+    {
+      question: "What is the purpose of the `final` keyword in Java?",
+      options: ["To mark a class as abstract.", "To define constants.", "To enable method overloading."],
+      answer: "To define constants."
+    },
+  ];
+
+
+    $(document).ready(function() {
+      loadQuiz();
+      $("#submitBtn").click(submitQuiz);
+    });
+
+    function loadQuiz() {
+      let quizContent = "";
+      questions.forEach((q, index) => {
+        quizContent += `
+          <div class="mb-4">
+            <h5>Question ${index + 1}: ${q.question}</h5>
+            ${q.options.map(option => `
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="question${index}" value="${option}">
+                <label class="form-check-label">${option}</label>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      });
+      $("#quiz").html(quizContent);
+    }
+
+    function submitQuiz() {
+      let score = 0;
+      questions.forEach((q, index) => {
+        const selectedOption = $(`input[name='question${index}']:checked`).val();
+        const questionBlock = $(`input[name='question${index}']`).closest('.mb-4');
+        if (selectedOption === q.answer) {
+          score++;
+          questionBlock.addClass('correct');
+        } else {
+          questionBlock.addClass('incorrect');
+        }
+      });
+      $("#score").text(score);
+    }
+  </script>
+</body>
+</html>
